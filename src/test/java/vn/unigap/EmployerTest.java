@@ -87,7 +87,7 @@ public class EmployerTest {
                 .andExpect(jsonPath("$.object.page").value(1))
                 .andExpect(jsonPath("$.object.pageSize").value(12))
                 .andExpect(jsonPath("$.object.totalElements").value(this.employerService.countEmployers()))
-                .andExpect(jsonPath("$.object.totalPages").value(1));
+                .andExpect(jsonPath("$.object.totalPages").value(Math.ceil((double) this.employerService.countEmployers() /(double) 12)));
     }
     @Test
     void testGetEmployerByIdMissingServletRequestParameterException() throws Exception {
